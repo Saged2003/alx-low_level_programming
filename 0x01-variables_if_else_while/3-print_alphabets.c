@@ -1,14 +1,12 @@
 #include <stdio.h>
 
 /**
- * main- Entry point
- * @void: Null value
+ * main - Prints the alphabet in lowercase, and then in uppercase.
  *
- * Description: Print alphabet lowercase
- * Return: Zero value
+ * Return: Always 0.
  */
 
-int (main) void
+int (main)void
 {
 	char c, b;
 
@@ -17,5 +15,6 @@ int (main) void
 	for (b = 'A'; b <= 'Z'; b++)
 		putchar(b);
 	putchar('\n');
+
 	return (0);
 }
