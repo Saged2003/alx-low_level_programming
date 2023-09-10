@@ -8,7 +8,7 @@
  * Return: Zero value
  */
 
-int main(void)
+int (main) void
 {
 	char c, b;
 
