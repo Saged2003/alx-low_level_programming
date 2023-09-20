@@ -1,31 +1,31 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
- * main - prints the Fizz-Buzz test
- *
- * Return: Always 0.
+ * main - Print multiples of three, five and both.
+ * Return: 0.
  */
 int main(void)
 {
-	int i;
+	int n;
 
-	for (i = 1; i <= 100; i++)
+	for (n = 1; n < 100; n++)
 	{
-		if (i % 3 == 0 && i % 5 == 0)
+		if (n % 15 == 0)
 		{
 			printf("FizzBuzz ");
 		}
-		else if (i % 3 == 0)
+		else if (n % 3 == 0)
 		{
 			printf("Fizz ");
 		}
-		else if (i % 5 == 0)
+		else if (n % 5 == 0)
 		{
 			printf("Buzz ");
 		}
 		else
 		{
-			printf("%d ", i);
+			printf("%d ", n);
 		}
 	}
 	printf("Buzz");
