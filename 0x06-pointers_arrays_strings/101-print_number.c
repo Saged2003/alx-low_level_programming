@@ -9,19 +9,19 @@
  */
 void print_number(int n)
 {
-	unsigned int num;
-/*check if number is negative*/
-	num = n;
+	int divisor = 1;
+	int sign = 1;
+
 	if (n < 0)
 	{
-		_putchar(45);
-		num = -n;
+		_putchar('-');
+		sign = -1;
 	}
-/* print number by recursion*/
-	if (num / 10)
+	while (n / divisor / 10 != 0)
+		divisor *= 10;
+	while (divisor != 0)
 	{
-		print_number(num / 10);
+	       	_putchar((n / divisor) % 10 * sign + '0');
+		divisor /= 10;
 	}
-	_putchar((num % 10) + '0');
 }
-
