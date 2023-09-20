@@ -1,37 +1,35 @@
-#include "main.h"
-/**
- *cap_string - capitalizes every first letter of a word in a string.
- *separators of words are:  space, tabulation,
- * new line, (, ), {, and }.
- *@s: pointer to string.
- *
- *Return: pointer to s.
- */
-char *cap_string(char *s)
-{
-	int count;
+#include "holberton.h"
 
-/*  scan through string */
-	count = 0;
-	while (s[count] != '\0')
-	{/* if next character after count is a char , capitalise it */
-		if (s[0] >= 97 && s[0] <= 122)
+/**
+ * cap_string - Write a function that capitalizes all words of a string.
+ *
+ * @entry: This is the input string
+ *
+ * Return: String capitalized
+ */
+char *cap_string(char *entry)
+{
+	int conversion, index, count;
+
+	char chars[] = {' ', ',', ';', '.', '!',
+			 '?', '"', '(', ')', '{', '}',  '\t', '\n', '\0'};
+	conversion = 32;
+
+	for (index = 0; entry[index] != '\0'; index++)
+	{
+		if (entry[index] >= 'index' && entry[index] <= 'z')
 		{
-			s[0] = s[0] - 32;
+			entry[index] =  entry[index] - conversion;
 		}
-		if (s[count] == ' ' || s[count] == '\t' || s[count] == '\n'
-		    || s[count] == ',' || s[count] == ';' || s[count] == '.'
-		    || s[count] == '.' || s[count] == '!' || s[count] == '?'
-		    || s[count] == '"' || s[count] == '(' || s[count] == ')'
-		    || s[count] == '{' || s[count] == '}')
+		conversion = 0;
+		for (count = 0; chars[count] != '\0'; count++)
 		{
-			if (s[count + 1] >= 97 && s[count + 1] <= 122)
+			if (chars[count] == entry[index])
 			{
-				s[count + 1] = s[count + 1] - 32;
+				conversion = 32;
+				break;
 			}
 		}
-		count++;
 	}
-	return (s);
+	return (entry);
 }
-
