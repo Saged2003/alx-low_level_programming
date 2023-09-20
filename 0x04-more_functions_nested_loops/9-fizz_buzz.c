@@ -7,11 +7,11 @@
  */
 int main(void)
 {
-	int n;
+	int i;
 
-	for (n = 1; n < 100; n++)
+	for (i = 1; i < 100; i++)
 	{
-		if (n % 15 == 0)
+		if (i % 3 == 0 && i % 5 == 0)
 		{
 			printf("FizzBuzz ");
 		}
@@ -25,7 +25,7 @@ int main(void)
 		}
 		else
 		{
-			printf("%d ", n);
+			printf("%d ", i);
 		}
 	}
 	printf("Buzz");
