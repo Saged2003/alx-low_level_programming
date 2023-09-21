@@ -8,18 +8,19 @@
  */
 int main(void)
 {
-	int n;
-	int a[5];
-	int *p;
+	int n, a[5];
 
-	a[2] = 1024;
-	p = malloc(5 * sizeof(int));
-	p[0] = 98;
-	p[1] = 198;
-	p[2] = 298;
-	p[3] = 398;
-	p[4] = 498;
-	*(a + 2) = *p; /* This is the line of code that I have added */
-	printf("a[2] = %d\n", a[2]);
+	a[2] = 98;
+	/*
+	* write one line of code that will print a[2] = 98,
+	* followed by a new line.
+	* You are not allowed to use the variable a in your new line of code
+	* You are not allowed to modify the variable p
+	* You can only write one statement
+	* You are not allowed to use ,
+	* You are not allowed to code anything else than the line of expected line of
+	* Your code should be written at line 19, before the ;
+	*/
+	printf("a[2] = %d\n", *(a + 2));
 	return (0);
 }
