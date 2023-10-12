@@ -1,93 +1,53 @@
 #include "variadic_functions.h"
-
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
- * print_char - print a character
- * @args: the va_list with the character to print as it's next element
+ * print_all - Function that prints anything
+ * @format: The list of types of arguments passed to the function
  *
- * Return: the number of bytes printed
+ * Return: Nothing
  */
-int print_char(va_list args)
-{
-	return (printf("%c", va_arg(args, int)));
-}
 
-
-/**
- * print_float - print a float
- * @args: the va_list with the float to print as it's next element
- *
- * Return: the number of bytes printed
- */
-int print_float(va_list args)
-{
-	return (printf("%f", va_arg(args, double)));
-}
-
-
-/**
- * print_int - print an integer
- * @args: the va_list with the integer to print as it's next element
- *
- * Return: the number of bytes printed
- */
-int print_int(va_list args)
-{
-	return (printf("%i", va_arg(args, int)));
-}
-
-
-/**
- * print_str - print a string
- * @args: the va_list with the string to print as it's next element
- *
- * Return: the number of bytes printed
- */
-int print_str(va_list args)
-{
-	const char *str = va_arg(args, const char *);
-
-	if (!str)
-		str = "(nil)";
-	return (printf("%s", str));
-}
-
-
-/**
- * print_all - print anything
- * @format: a format string listing the types of the proceeding arguments
- * @...: the values to print
- */
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	print_fn_t fn_list[] = {
-		{'c', print_char},
-		{'f', print_float},
-		{'i', print_int},
-		{'s', print_str},
-		{ 0,  NULL}
-	};
-	char *sep[] = {"", ", "};
-	unsigned int bytes = 0, fn_index = 0, format_index = 0;
+	va_list lists;
+	int i;
+	char *string;
 
-	va_start(args, format);
-	while (format && format[format_index])
+	i = 0;
+	va_start(lists, format);
+	while (format && format[i])
 	{
-		fn_index = 0;
-		while (fn_list[fn_index].format)
+		switch (format[i])
 		{
-			if (format[format_index] == fn_list[fn_index].format)
-			{
-				printf("%s", sep[bytes != 0]);
-				bytes += fn_list[fn_index].fn(args);
+			case 'c':
+				printf("%c", (char) va_arg(lists, int));
 				break;
-			}
-			++fn_index;
+			case 'i':
+				printf("%d", va_arg(lists, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(lists, double));
+				break;
+			case 's':
+				string = va_arg(lists, char *);
+				if (string == NULL)
+				{
+					printf("(nil)");
+				}
+				else
+				{
+					printf("%s", string);
+				}
+				break;
 		}
-		++format_index;
+		if ((format[i] == 'c' || format[i] == 'i' || format[i] == 'f' ||
+					format[i] == 's') && format[(i + 1)] != '\0')
+			printf(", ");
+		i++;
 	}
 	printf("\n");
-	va_end(args);
+	va_end(lists);
 }
 
